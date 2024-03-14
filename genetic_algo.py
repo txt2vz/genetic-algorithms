@@ -3,8 +3,10 @@ from problems import knapsack
 from algorithms import bruteforce, genetic
 from utils.analyze import timer
 
-things = knapsack.generate_things(22)
-things = knapsack.second_example
+things = knapsack.generate_things(12)
+
+print(things)
+#things = knapsack.second_example
 
 weight_limit = 3000
 
@@ -27,8 +29,8 @@ with timer():
 		populate_func=partial(genetic.generate_population, size=10, genome_length=len(things)),
 		fitness_func=partial(knapsack.fitness, things=things, weight_limit=weight_limit),
 		fitness_limit=result[0],
-		generation_limit=100
+		generation_limit=100		
 	)
-
+	genetic.print_stats(population, )
 sack = knapsack.from_genome(population[0], things)
 knapsack.print_stats(sack)
